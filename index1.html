@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Purnima 🌹</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+
+body{
+height:100vh;
+background:linear-gradient(to top,#ff758c,#ffb3c6);
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* Floating background */
+.float{
+position:absolute;
+animation:floatUp 12s linear infinite;
+opacity:0.85;
+}
+@keyframes floatUp{
+0%{transform:translateY(110vh);opacity:0}
+10%{opacity:1}
+100%{transform:translateY(-120vh);opacity:0}
+}
+
+/* Card */
+.card{
+background:rgba(255,255,255,0.32);
+backdrop-filter:blur(16px);
+border-radius:26px;
+padding:28px 22px;
+width:90%;
+max-width:390px;
+text-align:center;
+box-shadow:0 22px 60px rgba(0,0,0,0.25);
+animation:fadeIn 2s ease;
+}
+
+h1{color:#7a002f;font-size:2.1em}
+.subtitle{color:#4a001e;margin-bottom:10px}
+
+/* Heartbeat name */
+.heartbeat{
+font-size:1.9em;
+color:#b30047;
+animation:beat 1.2s infinite;
+margin:10px 0;
+}
+@keyframes beat{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.18)}
+}
+
+/* Rose bloom */
+.rose{
+font-size:75px;
+animation:bloom 3s infinite;
+}
+@keyframes bloom{
+0%{transform:scale(0.6)}
+50%{transform:scale(1)}
+100%{transform:scale(0.6)}
+}
+
+button{
+margin-top:16px;
+background:linear-gradient(45deg,#ff4d6d,#ff8fab);
+border:none;
+color:white;
+padding:14px 28px;
+font-size:1.05em;
+border-radius:30px;
+cursor:pointer;
+box-shadow:0 8px 24px rgba(0,0,0,0.25);
+transition:0.3s;
+}
+button:hover{transform:scale(1.08)}
+
+.message{
+display:none;
+margin-top:18px;
+animation:reveal 1.6s ease forwards;
+}
+.message p{
+font-size:0.95em;
+line-height:1.55;
+color:#3d0018;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:scale(0.9)}
+to{opacity:1;transform:scale(1)}
+}
+@keyframes reveal{
+from{opacity:0;transform:translateY(25px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* Slideshow */
+.slideshow{margin-top:14px}
+.slideshow img{
+width:100%;
+border-radius:18px;
+display:none;
+}
+
+/* Petals */
+.petal{
+position:absolute;
+font-size:22px;
+animation:petalFall 4s linear forwards;
+}
+@keyframes petalFall{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(100vh);opacity:0}
+}
+
+/* Love popup */
+.popup{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.6);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+.popup div{
+background:white;
+padding:30px;
+border-radius:24px;
+text-align:center;
+animation:fadeIn 1s ease;
+}
+.popup h2{
+color:#b30047;
+font-size:2em;
+}
+
+iframe{width:1px;height:1px;opacity:0}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<iframe id="music"
+src="https://www.youtube.com/embed/MK5Pqk5czuI?autoplay=1&loop=1&playlist=MK5Pqk5czuI&mute=1">
+</iframe>
+
+<div class="card">
+<h1>Happy Rose Day 🌹</h1>
+<div class="subtitle">For the girl who colors my world</div>
+
+<div class="heartbeat">❤️ Purnima ❤️</div>
+<div class="rose">🌹</div>
+
+<button onclick="revealLove()">Tap for Surprise 🎁</button>
+
+<div class="message" id="msg">
+<p>
+Happy Rose Day, my baby girl.<br><br>
+I’m sending you these roses, but deep inside I know —
+no rose, no flower, no creation can ever justify your beauty.<br><br>
+You are softer than petals, stronger than thorns,
+and brighter than every bloom combined.<br><br>
+May you always blossom like roses,
+but never feel the pain of their thorns.<br><br>
+I love you more… more… more… and more, baby 💖🌹
+</p>
+
+<div class="slideshow">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+</div>
+</div>
+</div>
+
+<!-- Love Popup -->
+<div class="popup" id="popup">
+<div>
+<h2>I Love You ❤️</h2>
+<p>Forever & Always</p>
+</div>
+</div>
+
+<script>
+function revealLove(){
+document.getElementById("msg").style.display="block";
+
+document.getElementById("music").src=
+"https://www.youtube.com/embed/MK5Pqk5czuI?autoplay=1&loop=1&playlist=MK5Pqk5czuI";
+
+petals();
+startSlideshow();
+
+setTimeout(()=>{
+document.getElementById("popup").style.display="flex";
+},6000);
+}
+
+/* Floating icons */
+const icons=["🌹","❤️","🌸","💐"];
+for(let i=0;i<32;i++){
+let f=document.createElement("div");
+f.className="float";
+f.innerText=icons[Math.floor(Math.random()*icons.length)];
+f.style.left=Math.random()*100+"vw";
+f.style.fontSize=(18+Math.random()*22)+"px";
+f.style.animationDuration=(6+Math.random()*6)+"s";
+document.body.appendChild(f);
+}
+
+/* Petals */
+function petals(){
+for(let i=0;i<24;i++){
+let p=document.createElement("div");
+p.className="petal";
+p.innerText="🌸";
+p.style.left=Math.random()*100+"vw";
+p.style.top="-20px";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),4000);
+}
+}
+
+/* Slideshow */
+let slideIndex=0;
+function startSlideshow(){
+const slides=document.querySelectorAll(".slideshow img");
+if(slides.length===0)return;
+slides.forEach(s=>s.style.display="none");
+slides[slideIndex].style.display="block";
+slideIndex=(slideIndex+1)%slides.length;
+setTimeout(startSlideshow,2500);
+}
+</script>
+
+</body>
+</html>
